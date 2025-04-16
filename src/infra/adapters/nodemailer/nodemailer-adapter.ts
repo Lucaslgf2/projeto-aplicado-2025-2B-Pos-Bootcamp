@@ -2,7 +2,6 @@ import { IEmailModel, TemplateNames } from '@/domain/entities/email'
 import { ISendEmail } from '@/domain/interfaces/email/send-email-interface'
 import loggerWinston from '@/main/adapters/winston/logger-winston'
 import { createTransport, Transporter } from 'nodemailer'
-import templates from './templates/index'
 
 export class NodeMailerAdapter implements ISendEmail {
   private readonly transport: Transporter
@@ -44,7 +43,7 @@ export class NodeMailerAdapter implements ISendEmail {
   }
 
   private async loadTemplate(templateName: TemplateNames): Promise<string> {
-    const template = templates[templateName]
+    const template = '' //templates[templateName]
     if (!template) {
       throw new Error(`Template '${templateName}' não encontrado.`)
     }

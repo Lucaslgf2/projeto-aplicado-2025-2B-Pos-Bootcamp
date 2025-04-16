@@ -16,9 +16,9 @@ export class PostUserController implements IController {
       return badRequest(error)
     }
 
-    const { email, password, firstName, lastName, cpf, gender, phoneNumber, birthDate, acceptedTerms } = httpRequest.body
+    const { email, password } = httpRequest.body
 
-    const result = await this.saveUser.save({ email, password, firstName, lastName, cpf, gender, phoneNumber, birthDate, acceptedTerms, isVerified: false })
+    const result = await this.saveUser.save({ email, password })
     return created(result)
   }
 }

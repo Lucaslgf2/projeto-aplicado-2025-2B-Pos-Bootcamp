@@ -15,7 +15,7 @@ export class UserRepository extends PostgresKnexConnector<UserORM> implements IU
   async selectAll(): Promise<User[] | undefined> {
     const resultDb = await this.query().select('*').where('IsDeleted', false)
     return resultDb?.map((item) => {
-      return new User(new UUID(item.UserId), item.Email, item.UserType, undefined, undefined)
+      return new User(new UUID(item.UserId), item.Email, undefined, undefined)
     })
   }
 
@@ -27,7 +27,7 @@ export class UserRepository extends PostgresKnexConnector<UserORM> implements IU
       })
       .where('Users.UserId', userId)
       .andWhere('Users.IsDeleted', false)
-    return resultDb ? new User(new UUID(resultDb.UserId), resultDb.Email, resultDb.UserType, resultDb.Password, undefined) : undefined
+    return resultDb ? new User(new UUID(resultDb.UserId), resultDb.Email, resultDb.Password, undefined) : undefined
   }
 
   async selectByEmail(email: string): Promise<User | undefined> {
@@ -37,13 +37,13 @@ export class UserRepository extends PostgresKnexConnector<UserORM> implements IU
         join.on('Users.UserId', '=', 'Passwords.UserId').andOnVal('Passwords.Active', '=', true)
       })
       .where({ Email: email, IsDeleted: false })
-    return resultDb ? new User(new UUID(resultDb.UserId), resultDb.Email, resultDb.UserType, resultDb.Password, undefined) : undefined
+    return resultDb ? new User(new UUID(resultDb.UserId), resultDb.Email, resultDb.Password, undefined) : undefined
   }
 
-  async insert(user: Pick<User, 'email' | 'userType'>): Promise<User> {
-    const newUserORM = new UserORM({ Email: user.email, UserType: user.userType })
+  async insert(user: Pick<User, 'email'>): Promise<User> {
+    const newUserORM = new UserORM({ Email: user.email })
     const [resultDb] = await this.query().insert(newUserORM).returning('*')
-    return new User(new UUID(resultDb.UserId), resultDb.Email, resultDb.UserType, undefined, undefined)
+    return new User(new UUID(resultDb.UserId), resultDb.Email, undefined, undefined)
   }
 
   async update(userId: string, user: Pick<User, 'email'>): Promise<void> {

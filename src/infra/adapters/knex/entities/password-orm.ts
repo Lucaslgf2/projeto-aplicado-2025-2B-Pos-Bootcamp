@@ -1,4 +1,5 @@
 export class PasswordORM {
+  UserId!: string
   Password!: string
   Active!: boolean
   CreatedAt!: Date
