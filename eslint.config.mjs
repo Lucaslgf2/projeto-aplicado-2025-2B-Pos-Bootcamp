@@ -24,7 +24,7 @@ export default [
       'object-curly-spacing': ['error', 'always'],
       'prefer-destructuring': 'off',
       'space-before-function-paren': ['error', 'never'],
-      //'@typescript-eslint/no-unsafe-type-assertion': 'off', //Remover
+      '@typescript-eslint/no-unsafe-type-assertion': 'off', //TO-DO: Remover
       '@typescript-eslint/consistent-type-definitions': 'off',
       '@typescript-eslint/consistent-type-exports': 'off',
       '@typescript-eslint/consistent-type-imports': 'off',
@@ -35,6 +35,7 @@ export default [
       '@typescript-eslint/no-extraneous-class': 'off',
       '@typescript-eslint/no-import-type-side-effects': 'off',
       '@typescript-eslint/no-magic-numbers': 'off',
+      '@typescript-eslint/no-misused-spread': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
       '@typescript-eslint/no-namespace': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',

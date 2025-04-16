@@ -1,0 +1,19 @@
+@startuml C4_Context
+  !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+  LAYOUT_WITH_LEGEND()
+
+  title [Diagrama de Containers do Sistema] - Sistema para Gestão de Condomínios
+
+  Person(admin, "Administrador do Sistema", "Responsável pela gestão técnica do sistema.")
+  Person(condoUser, "Usuário do Condomínio", "Morador, síndico, subsíndico, conselho, etc.")
+
+  System(system, "Sistema de Gestão Condominial", "Plataforma para comunicação, administração e organização de um condomínio.")
+  System_Ext(emailSystem, "Sistema de E-mail", "Responsável pelo envio de notificações e comunicados.")
+  System_Ext(docStorage, "Armazenamento de Documentos", "Serviço externo para armazenar atas, comunicados, documentos financeiros, etc.")
+
+  Rel_Down(admin, system, "Gerencia e administra")
+  Rel_Down(condoUser, system, "Utiliza para interações condominiais")
+  Rel_R(system, emailSystem, "Envia notificações por")
+  Rel_Down(system, docStorage, "Armazena e acessa documentos via")
+@enduml
