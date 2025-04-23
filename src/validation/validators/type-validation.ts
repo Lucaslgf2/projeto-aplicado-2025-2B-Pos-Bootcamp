@@ -29,7 +29,7 @@ export class TypeValidation implements IValidation {
 
     if (this.fieldType === 'uuid') {
       const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
-      if (!uuidRegex.test(input.value as string)) {
+      if (!uuidRegex.test(input.value ?? input)) {
         return new InvalidParamError(this.fieldName, this.fieldType)
       }
     }

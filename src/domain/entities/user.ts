@@ -7,7 +7,7 @@ export class User {
     public password: string | undefined,
     public firstName: string,
     public lastName: string,
-    public cpf: string | undefined,
+    public cpf: string,
     public gender: GenderEnum,
     public phoneNumber: string,
     public birthDate: Date

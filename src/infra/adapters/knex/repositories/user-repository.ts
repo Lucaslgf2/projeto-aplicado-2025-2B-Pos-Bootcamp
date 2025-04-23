@@ -50,6 +50,15 @@ export class UserRepository extends PostgresKnexConnector<UsuariosORM> implement
   }
 
   async update(userId: string, user: Omit<User, 'userId'>): Promise<void> {
-    await this.query().update('Email', user.email).where('CodigoUsuario', userId)
+    await this.query()
+      .update('Email', user.email)
+      .update('Senha', user.password)
+      .update('Nome', user.firstName)
+      .update('Sobrenome', user.lastName)
+      .update('CPF', user.cpf)
+      .update('Gênero', user.gender)
+      .update('Celular', user.phoneNumber)
+      .update('DataNascimento', user.birthDate)
+      .where('CodigoUsuario', userId)
   }
 }

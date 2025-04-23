@@ -16,8 +16,8 @@
       "restart": true,
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceFolder}/.esbuild/**/*.js"
-        //"${workspaceFolder}/.esbuild/**/*.map"
+        "${workspaceFolder}/dist/**/*.js",
+        "${workspaceFolder}/dist/**/*.map"
       ],
       "skipFiles": ["<node_internals>/**"],
     },
@@ -34,7 +34,8 @@
       "restart": true,
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceFolder}/.esbuild/**/*.js"
+        "${workspaceFolder}/dist/**/*.js",
+        "${workspaceFolder}/dist/**/*.map"
       ],
       "skipFiles": ["<node_internals>/**"],
     }

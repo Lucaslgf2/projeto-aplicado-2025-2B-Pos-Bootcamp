@@ -8,7 +8,7 @@ export class GetUserController implements IController {
 
   @ErrorHandler()
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const userId = httpRequest.userAuth.userId.value
+    const userId = httpRequest.userAuth.userId
     const result = await this.findUser.find({ userId })
     return ok(result)
   }

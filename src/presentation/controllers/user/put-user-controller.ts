@@ -11,13 +11,13 @@ export class PutUserController implements IController {
 
   @ErrorHandler()
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const toValidate = { ...httpRequest.body, ...httpRequest.userAuth }
+    const toValidate = { ...httpRequest.body, userId: httpRequest.userAuth.userId }
     const error = this.validation.validate(toValidate)
     if (error) {
       return badRequest(error)
     }
 
-    const userId = httpRequest.userAuth.userId.value
+    const userId = httpRequest.userAuth.userId
     const { email, firstName, lastName, cpf, gender, phoneNumber, birthDate } = httpRequest.body
 
     await this.setUser.set({ userId, email, firstName, lastName, cpf, gender, phoneNumber, birthDate })
