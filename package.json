@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "npm run build && npm run lint:fix",
     "dev": "ts-node-dev --respawn --transpile-only --clear --inspect=0.0.0.0:9229 --require dotenv-flow/config src/main/server.ts",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist .tsbuildinfo",
     "build": "npm run clean && tsc -p tsconfig-build.json",
     "start": "npm run build && node dist/main/server.js",
     "prepare": "husky",

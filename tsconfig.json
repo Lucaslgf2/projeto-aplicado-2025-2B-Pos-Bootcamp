@@ -36,7 +36,7 @@
     },
     "rootDirs": ["src", "tests"],                        /* Allow multiple folders to be treated as one when resolving modules. */
     "resolveJsonModule": true,                           /* Enable importing .json files */
-    "rootDir": "./",                                     /* Specify the root folder within your source files. */
+    "rootDir": "src",                                     /* Specify the root folder within your source files. */
     "typeRoots": [
       "./node_modules/@types",
       "./src/main/config/custom-module-types"
@@ -52,7 +52,7 @@
 
     /* Emit */
     "sourceMap": true,                                   /* Create source map files for emitted JavaScript files. */
-    "outDir": ".build",                                  /* Specify an output folder for all emitted files. */
+    "outDir": "dist",                                  /* Specify an output folder for all emitted files. */
     "removeComments": true,                              /* Disable emitting comments. */
     "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */

@@ -1,0 +1,47 @@
+@startuml C4_Component
+  !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+  LAYOUT_WITH_LEGEND()
+
+  title [Diagrama de Componentes] - Backend API do Sistema de Gestão Condominial
+
+  Person(admin, "Administrador do Sistema")
+  Person(condoUser, "Usuário do Condomínio")
+
+  System_Boundary(sistema, "Sistema de Gestão Condominial") {
+    Container(api, "Backend API", "Node.js (TypeScript)", "Exposição de endpoints RESTful, seguindo Clean Architecture") {
+      Component(controllerUser, "UserController", "Express + TS", "Controlador responsável por operações de usuários (CRUD)")
+      Component(controllerAuth, "AuthController", "Express + TS", "Controlador de autenticação e emissão de tokens JWT")
+      Component(controllerComms, "ComunicadosController", "Express + TS", "Publicação e listagem de comunicados")
+      Component(controllerPolls, "EnquetesController", "Express + TS", "Gerenciamento de enquetes e votos")
+      Component(controllerDocs, "DocumentosController", "Express + TS", "Upload e acesso a documentos")
+
+      Component(serviceUser, "UserService", "Aplicação", "Regras de negócio para usuários")
+      Component(serviceAuth, "AuthService", "Aplicação", "Login, verificação de senha, emissão de token")
+      Component(serviceComms, "ComunicadoService", "Aplicação", "Regras para envio de comunicados")
+      Component(servicePolls, "EnqueteService", "Aplicação", "Regras de negócio para enquetes")
+      Component(serviceDocs, "DocumentoService", "Aplicação", "Regras de negócio de documentos")
+
+      Component(repoUser, "UserRepository", "Knex + PostgreSQL", "Consulta e persistência de dados do usuário")
+      Component(repoPassword, "PasswordRepository", "Knex + PostgreSQL", "Gerencia senhas de acesso")
+      Component(adapterEmail, "EmailAdapter", "Nodemailer", "Envia e-mails de notificação")
+      Component(adapterCrypto, "Criptografia", "Bcrypt + JWT", "Hash de senhas e geração de tokens JWT")
+    }
+  }
+
+  Rel_Down(admin, sistema, "Acessa endpoints do sistema")
+  Rel_Down(condoUser, sistema, "Acessa endpoints do sistema")
+
+  Rel_Down(controllerUser, serviceUser, "Usa")
+  Rel_Down(controllerComms, serviceComms, "Usa")
+  Rel_Down(controllerPolls, servicePolls, "Usa")
+  Rel_Down(controllerDocs, serviceDocs, "Usa")
+  Rel_Down(controllerAuth, serviceAuth, "Usa")
+
+  Rel_Down(serviceUser, repoUser, "Usa")
+  Rel_Down(serviceUser, repoPassword, "Usa")
+  Rel_Down(serviceAuth, repoUser, "Consulta")
+  Rel_Down(serviceAuth, adapterCrypto, "Valida senha e gera token")
+  Rel_Down(serviceComms, adapterEmail, "Notifica moradores")
+  Rel_Down(serviceDocs, adapterEmail, "Notifica sobre novo documento")
+@enduml
