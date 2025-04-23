@@ -36,7 +36,7 @@
     },
     "rootDirs": ["src", "tests"],                        /* Allow multiple folders to be treated as one when resolving modules. */
     "resolveJsonModule": true,                           /* Enable importing .json files */
-    "rootDir": "src",                                     /* Specify the root folder within your source files. */
+    // "rootDir": "???",                                 /* Specify the root folder within your source files. */
     "typeRoots": [
       "./node_modules/@types",
       "./src/main/config/custom-module-types"

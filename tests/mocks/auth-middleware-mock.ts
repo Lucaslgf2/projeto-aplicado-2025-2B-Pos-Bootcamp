@@ -1,4 +1,3 @@
-import { UUID } from '@/domain/entities/uuid'
 import { unauthorized } from '@/presentation/http/http-status'
 import { IHttpRequest, IHttpResponse } from '@/presentation/interfaces'
 
@@ -12,9 +11,8 @@ jest.mock('@/presentation/middlewares/auth-middleware', () => {
               statusCode: 200,
               body: {
                 userAuth: {
-                  userId: new UUID(globalThis.testUserId),
+                  userId: globalThis.testUserId,
                   email: 'mock_user_email@example.com'
-                  //userType: UserTypeEnum.Influencer
                 }
               }
             }

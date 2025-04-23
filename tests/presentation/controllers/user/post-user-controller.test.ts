@@ -10,7 +10,7 @@ describe('PostUserController', () => {
     app = await setupApp()
   })
 
-  const requiredParams = ['email', 'password', 'firstName', 'lastName', 'gender', 'phoneNumber', 'birthDate', 'acceptedTerms']
+  const requiredParams = ['email', 'password', 'firstName', 'lastName', 'cpf', 'gender', 'phoneNumber', 'birthDate']
   requiredParams.forEach((param) => {
     test(`Should return 400-BadRequest if an "${param}" is not provided`, async () => {
       const body: Record<string, any> = {}
@@ -34,9 +34,7 @@ describe('PostUserController', () => {
       cpf: '41811398081',
       gender: 'male',
       phoneNumber: 'any_phoneNumber',
-      birthDate: '1990-01-01',
-      isVerified: true,
-      acceptedTerms: true
+      birthDate: '1990-01-01'
     })
     expect(response.status).toBe(201)
     expect(response.body).toHaveProperty('data.userId')
@@ -57,9 +55,7 @@ describe('PostUserController', () => {
       cpf: '41811398081',
       gender: 'male',
       phoneNumber: 'any_phoneNumber',
-      birthDate: '1990-01-01',
-      isVerified: true,
-      acceptedTerms: true
+      birthDate: '1990-01-01'
     })
     expect(response.status).toBe(400)
     expect(response.body).toHaveProperty('error', 'Email informado é inválido')
