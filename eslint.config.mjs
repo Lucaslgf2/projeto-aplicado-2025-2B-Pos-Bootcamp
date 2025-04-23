@@ -29,6 +29,7 @@ export default [
       '@typescript-eslint/consistent-type-exports': 'off',
       '@typescript-eslint/consistent-type-imports': 'off',
       '@typescript-eslint/class-methods-use-this': 'off',
+      '@typescript-eslint/init-declarations': 'off',
       '@typescript-eslint/max-params': 'off',
       '@typescript-eslint/no-confusing-void-expression': 'off',
       '@typescript-eslint/no-explicit-any': 'off',

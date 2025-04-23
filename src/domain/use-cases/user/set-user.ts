@@ -11,8 +11,10 @@ export class SetUser implements ISetUser {
       throw new InvalidUserError()
     }
 
-    if (params.email && params.email !== userModel.email) {
-      await this.userRepo.update(params.userId, { email: params.email })
+    const { email, firstName, lastName, cpf, gender, phoneNumber, birthDate } = params
+
+    if (firstName ?? lastName ?? cpf ?? gender ?? phoneNumber ?? birthDate) {
+      await this.userRepo.update(params.userId, { email, password: userModel.password, firstName, lastName, cpf, gender, phoneNumber, birthDate })
     }
   }
 }

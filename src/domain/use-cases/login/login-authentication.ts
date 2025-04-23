@@ -23,6 +23,6 @@ export class LoginAuthentication implements ILoginAuthentication {
     }
 
     const acessToken = await this.authToken.signToken({ ...userModel, password: undefined }, 8 * 60 * 60)
-    return { userId: userModel.userId.value, token: acessToken }
+    return { userId: userModel.userId, token: acessToken }
   }
 }

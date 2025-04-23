@@ -13,8 +13,7 @@ export class FindUser implements IFindUser {
 
     return {
       ...userModel,
-      password: undefined,
-      previousPasswords: undefined
+      password: undefined
     }
   }
 }

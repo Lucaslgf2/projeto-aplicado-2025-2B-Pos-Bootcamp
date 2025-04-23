@@ -1,21 +1,17 @@
 import { User } from '@/domain/entities/user'
 
 export namespace NsSaveUser {
-  export type Input = Pick<User, 'email' | 'password'>
+  export type Input = Omit<User, 'userId'>
   export type Output = { userId: string; confirmToken: string }
 }
 
 export namespace NsSetUser {
-  export type Input = { userId: string; email: string }
+  export type Input = Omit<User, 'password'>
 }
 
 export namespace NsFindUser {
-  export type Input = { userId: string }
+  export type Input = Pick<User, 'userId'>
   export type Output = User
-}
-
-export namespace NsDeleteUser {
-  export type Input = { userId: string }
 }
 
 export interface ISaveUser {
@@ -28,8 +24,4 @@ export interface ISetUser {
 
 export interface IFindUser {
   find: (params: NsFindUser.Input) => Promise<NsFindUser.Output>
-}
-
-export interface IDeleteUser {
-  delete: (params: NsDeleteUser.Input) => Promise<void>
 }

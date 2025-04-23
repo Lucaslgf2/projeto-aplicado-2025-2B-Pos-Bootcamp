@@ -9,4 +9,4 @@ export enum GenderEnum {
 
 export type IUUID = `${string}-${string}-${string}-${string}-${string}`
 
-export type PreviousPasswords = { password: string; createdAt: Date; updatedAt?: Date }
+export type PreviousPasswords = { password: string; createdAt: Date; AtualizadoEm?: Date }

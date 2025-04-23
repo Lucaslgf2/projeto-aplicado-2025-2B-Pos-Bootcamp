@@ -2,10 +2,10 @@ import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
   await knex.raw(`
-    CREATE OR REPLACE FUNCTION fn_Update_Column_UpdatedAt()
+    CREATE OR REPLACE FUNCTION fn_Update_Column_AtualizadoEm()
     RETURNS TRIGGER AS $$
     BEGIN
-      NEW."UpdatedAt" = NOW();
+      NEW."AtualizadoEm" = NOW();
       RETURN NEW;
     END;
     $$ LANGUAGE plpgsql;
@@ -13,5 +13,5 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  await knex.raw('DROP FUNCTION IF EXISTS fn_Update_Column_UpdatedAt')
+  await knex.raw('DROP FUNCTION IF EXISTS fn_Update_Column_AtualizadoEm')
 }

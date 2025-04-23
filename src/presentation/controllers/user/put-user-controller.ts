@@ -18,9 +18,9 @@ export class PutUserController implements IController {
     }
 
     const userId = httpRequest.userAuth.userId.value
-    const { email } = httpRequest.body
+    const { email, firstName, lastName, cpf, gender, phoneNumber, birthDate } = httpRequest.body
 
-    await this.setUser.set({ userId, email })
+    await this.setUser.set({ userId, email, firstName, lastName, cpf, gender, phoneNumber, birthDate })
     return noContent()
   }
 }
