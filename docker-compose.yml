@@ -1,0 +1,28 @@
+# YAML schema for Docker Compose
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: tcc-postgres
+    environment:
+      POSTGRES_USER: tcc_user
+      POSTGRES_PASSWORD: tcc_password
+      POSTGRES_DB: tcc_database
+    ports:
+      - '5432:5432'
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: tcc-mailhog
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+volumes:
+  pg-data:
+    driver: local

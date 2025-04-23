@@ -29,7 +29,7 @@ export class SaveUser implements ISaveUser {
       await this.passwordRepo.insert(newUser.userId.value, passwordHash)
     }
 
-    const confirmToken = await this.authToken.signToken({ userId: newUser.userId.value, email: newUser.email }, 1)
+    const confirmToken = await this.authToken.signToken({ userId: newUser.userId.value, email: newUser.email }, 1 * 60 * 60)
     const confirmLink = `${this.frontUrl}/auth/email-confirmation?token=${confirmToken}`
     const name = 'FirstName LastName}'
     const address = params.email

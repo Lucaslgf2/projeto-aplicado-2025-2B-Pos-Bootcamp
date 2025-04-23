@@ -22,7 +22,7 @@ export class LoginAuthentication implements ILoginAuthentication {
       throw new InvalidCredentialsError()
     }
 
-    const acessToken = await this.authToken.signToken({ ...userModel, password: undefined }, 8)
+    const acessToken = await this.authToken.signToken({ ...userModel, password: undefined }, 8 * 60 * 60)
     return { userId: userModel.userId.value, token: acessToken }
   }
 }
